@@ -317,10 +317,5 @@ This project was developed as an academic web application project to demonstrate
 
 ## License
 
-This project is for academic and learning purposes. Add a LICENSE file if you want to publish it under a specific open-source license.
+This project is licensed under Apache License 2.0. See the LICENSE file for details.
 
----
-
-## Author
-
-Developed by **Your Name**
