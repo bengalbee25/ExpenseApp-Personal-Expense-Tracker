@@ -1,0 +1,14 @@
+.vs/
+bin/
+obj/
+
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+TestResults/
+.vscode/
+
+# Optional: ignore local settings if it contains passwords or private connection strings
+# appsettings.Development.json

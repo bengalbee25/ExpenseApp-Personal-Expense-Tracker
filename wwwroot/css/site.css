@@ -1,0 +1,153 @@
+:root {
+    --brand: #15803d;
+    --brand-dark: #166534;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e5e7eb;
+}
+
+html { font-size: 16px; }
+body {
+    background: var(--bg);
+    color: #0f172a;
+    min-height: 100vh;
+}
+
+a { text-decoration: none; }
+
+.app-title {
+    color: var(--brand-dark);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.sidebar-card,
+.content-card,
+.auth-card,
+.summary-card {
+    background: var(--card);
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.sidebar-card,
+.content-card,
+.auth-card {
+    padding: 1.5rem;
+}
+
+.summary-card {
+    padding: 1.4rem 1.5rem;
+}
+
+.summary-label {
+    font-size: .95rem;
+    color: #64748b;
+}
+
+.summary-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-top: .25rem;
+}
+
+.nav-pill {
+    padding: .85rem 1rem;
+    border-radius: 1rem;
+    color: #334155;
+    transition: all .2s ease;
+}
+
+.nav-pill:hover,
+.nav-pill.active {
+    background: var(--brand);
+    color: white;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 1rem;
+}
+
+.auth-wrap {
+    min-height: calc(100vh - 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 460px;
+}
+
+.narrow-card {
+    max-width: 700px;
+}
+
+.demo-box {
+    background: #f0fdf4;
+    border: 1px dashed #86efac;
+    border-radius: 1rem;
+    padding: .75rem 1rem;
+    font-size: .92rem;
+    color: #166534;
+}
+
+.custom-table thead th {
+    color: #64748b;
+    font-size: .92rem;
+    font-weight: 600;
+    border-bottom-width: 1px;
+}
+
+.custom-table tbody td {
+    padding-top: .95rem;
+    padding-bottom: .95rem;
+}
+
+canvas {
+    max-width: 100%;
+}
+
+
+.form-control, .form-select {
+    border-color: var(--border);
+    padding: .75rem 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #86efac;
+    box-shadow: 0 0 0 .2rem rgba(34, 197, 94, 0.12);
+}
+
+.custom-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.action-column {
+    min-width: 180px;
+}
+
+.type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: .35rem .8rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.type-income {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.type-expense {
+    color: #9a3412;
+    background: #ffedd5;
+}

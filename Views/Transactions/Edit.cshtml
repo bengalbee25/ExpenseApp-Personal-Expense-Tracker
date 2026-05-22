@@ -1,0 +1,71 @@
+@model EditTransactionViewModel
+@{ ViewData["Title"] = "Edit Transaction"; }
+
+<div class="content-card narrow-card">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div>
+            <h2 class="section-title mb-1">Edit Transaction</h2>
+            <p class="text-muted mb-0">Update the details below and save your changes.</p>
+        </div>
+        <span class="type-badge @(Model.Type == "income" ? "type-income" : "type-expense") text-capitalize">
+            @Model.Type
+        </span>
+    </div>
+
+    <form asp-action="Edit" method="post" class="vstack gap-3 mb-3">
+        @Html.AntiForgeryToken()
+        <input asp-for="Id" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+
+        <div>
+            <label asp-for="Type" class="form-label"></label>
+            <select asp-for="Type" class="form-select rounded-4">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <span asp-validation-for="Type" class="text-danger small"></span>
+        </div>
+
+        <div>
+            <label asp-for="Amount" class="form-label"></label>
+            <input asp-for="Amount" class="form-control rounded-4" type="number" step="0.01" />
+            <span asp-validation-for="Amount" class="text-danger small"></span>
+        </div>
+
+        <div>
+            <label asp-for="Category" class="form-label"></label>
+            <input asp-for="Category" class="form-control rounded-4" />
+            <span asp-validation-for="Category" class="text-danger small"></span>
+        </div>
+
+        <div>
+            <label asp-for="TransactionDate" class="form-label">Date</label>
+            <input asp-for="TransactionDate" class="form-control rounded-4" type="date" />
+            <span asp-validation-for="TransactionDate" class="text-danger small"></span>
+        </div>
+
+        <div>
+            <label asp-for="Description" class="form-label"></label>
+            <input asp-for="Description" class="form-control rounded-4" />
+            <span asp-validation-for="Description" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn btn-success rounded-4 px-4">Save Changes</button>
+            <a class="btn btn-outline-secondary rounded-4 px-4" asp-action="@(Model.Type == "expense" ? "Expenses" : "Income")">Cancel</a>
+        </div>
+    </form>
+
+    <div class="border-top pt-3 mt-3">
+        <form asp-action="Delete" method="post" onsubmit="return confirm('Are you sure you want to delete this transaction?');">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="type" value="@Model.Type" />
+            <button type="submit" class="btn btn-outline-danger rounded-4">Delete Transaction</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

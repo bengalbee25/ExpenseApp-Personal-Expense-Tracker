@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExpenseTracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container-fluid py-3 py-md-4">
+        <div class="row g-4">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <div class="col-lg-3">
+                    <aside class="sidebar-card sticky-lg-top">
+                        <div class="mb-4">
+                            <h1 class="app-title mb-2">ExpenseApp</h1>
+                            <p class="text-muted mb-0">Welcome, <strong>@User.Identity?.Name</strong></p>
+                        </div>
+
+                        <nav class="nav flex-column gap-2">
+                            <a class="nav-pill @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                            <a class="nav-pill @(Context.Request.Path.StartsWithSegments("/Transactions/Income") ? "active" : "")" asp-controller="Transactions" asp-action="Income">Income</a>
+                            <a class="nav-pill @(Context.Request.Path.StartsWithSegments("/Transactions/Expenses") ? "active" : "")" asp-controller="Transactions" asp-action="Expenses">Expenses</a>
+                            <a class="nav-pill @(Context.Request.Path.StartsWithSegments("/Transactions/Search") ? "active" : "")" asp-controller="Transactions" asp-action="Search">Search Transactions</a>
+                            <a class="nav-pill @(Context.Request.Path.StartsWithSegments("/Transactions/Report") ? "active" : "")" asp-controller="Transactions" asp-action="Report">Generate Report</a>
+                            <a class="nav-pill @(Context.Request.Path.StartsWithSegments("/Account/ChangePassword") ? "active" : "")" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                        </nav>
+
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="mt-4">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger w-100 rounded-4">Logout</button>
+                        </form>
+                    </aside>
+                </div>
+            }
+
+            <div class="@(User.Identity?.IsAuthenticated == true ? "col-lg-9" : "col-12")">
+                <main>
+                    @if (TempData["Success"] is string success)
+                    {
+                        <div class="alert alert-success rounded-4 border-0 shadow-sm">@success</div>
+                    }
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
